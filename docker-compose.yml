@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  db:
+    image: postgres:15-alpine # Lightweight and stable image
+    restart: always
+    environment:
+      POSTGRES_USER: game_user       # Your database username
+      POSTGRES_PASSWORD: game_password # Your database password
+      POSTGRES_DB: game_db           # Your database name
+    ports:
+      - "5432:5432" # Host:Container port mapping
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/ # Persist data across restarts
+
+volumes:
+  postgres_data:

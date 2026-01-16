@@ -1,3 +1,21 @@
+setup:
+
+first get the postgres image:
+podman pull docker://postgres:15-alpine
+
+check that it downloaded:
+podman images
+
+now run:
+podman-compose up -d
+
+check that the container exists:
+podman container list
+
+use start.sh to run the app
+
+
+
 # code-with-quarkus
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
