@@ -12,7 +12,9 @@ podman-compose up -d
 check that the container exists:
 podman container list
 
-use start.sh to run the app
+use these two commands to run the app
+podman start code-with-quarkus_db_1
+./mvnw quarkus:dev
 
 
 
