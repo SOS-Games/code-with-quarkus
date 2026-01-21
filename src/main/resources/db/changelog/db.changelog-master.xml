@@ -10,6 +10,45 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="VARCHAR(255)"/>
+            <column name="level" type="INTEGER" defaultValue="1"/>
+            <column name="experience" type="BIGINT" defaultValue="0"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="developer">
+        <createTable tableName="player_item">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="owner_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="item_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="quantity" type="INTEGER" defaultValue="1"/>
+            <column name="slot" type="VARCHAR(255)" defaultValue="INVENTORY"/>
+            <column name="current_durability" type="FLOAT"/>
+        </createTable>
+        <createIndex indexName="idx_player_item_owner_id" tableName="player_item">
+            <column name="owner_id"/>
+        </createIndex>
+    </changeSet>
+
+    <changeSet id="3" author="developer">
+        <createTable tableName="agent_state">
+            <column name="id" type="VARCHAR(255)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="agent_type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="current_location" type="VARCHAR(255)"/>
+            <column name="health" type="INTEGER" defaultValue="100"/>
+            <column name="max_health" type="INTEGER" defaultValue="100"/>
+            <column name="mana" type="INTEGER" defaultValue="0"/>
+            <column name="max_mana" type="INTEGER" defaultValue="0"/>
+            <column name="state_data" type="TEXT"/>
         </createTable>
     </changeSet>
 

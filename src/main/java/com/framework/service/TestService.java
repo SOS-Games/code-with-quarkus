@@ -3,6 +3,7 @@
 package com.framework.service;
 
 import com.framework.data.entity.PlayerEntity;
+import com.framework.service.repos.PlayerRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
