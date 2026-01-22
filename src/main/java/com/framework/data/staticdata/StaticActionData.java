@@ -23,9 +23,9 @@ public class StaticActionData {
         }
         
         // TODO: Add actual action definitions here
-        // Example:
-        // actions.put("mine_copper", new Action("mine_copper", "Mine Copper", 
-        //     "mining", "copper_mining_drops", 10.0, 0.0)); // Continuous action
+
+        actions.put("mine_copper", new Action("mine_copper", "Mine Copper", 
+            "mining", "copper_mining_drops", 10.0, 0.0));
         
         initialized = true;
     }

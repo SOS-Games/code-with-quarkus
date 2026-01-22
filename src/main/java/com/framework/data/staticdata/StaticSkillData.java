@@ -4,6 +4,8 @@ import com.framework.data.model.Skill;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Static data factory for skills.
@@ -23,9 +25,9 @@ public class StaticSkillData {
         }
         
         // TODO: Add actual skill definitions here
-        // Example:
-        // List<Integer> woodcuttingCurve = List.of(0, 100, 200, 400, 800, 1600, ...);
-        // skills.put("woodcutting", new Skill("woodcutting", "Woodcutting", woodcuttingCurve));
+        
+        ArrayList<Integer> miningCurve = new ArrayList<Integer>(Arrays.asList(0, 100, 200, 400, 800, 1600));
+        skills.put("mining", new Skill("mining", "Mining", miningCurve));
         
         initialized = true;
     }

@@ -32,26 +32,37 @@ public class ActionService {
     
     private final Random random = new Random();
     
-    // Track active actions: playerId -> actionId
-    private final Map<String, String> activeActions = new ConcurrentHashMap<>();
+    // Track active actions: playerId -> ActionState
+    private final Map<String, ActionState> activeActions = new ConcurrentHashMap<>();
     
     /**
      * Initiates a task/action for a player.
      * @param playerId The player ID
      * @param actionId The action ID
+     * @param instanceId The instance ID (e.g., "copper_node_1")
      */
     @Transactional
-    public void startAction(String playerId, String actionId) {
+    public void startAction(String playerId, String actionId, String instanceId) {
         // Validate action exists (will throw if not found)
         StaticActionData.getAction(actionId);
         
         // Check if player is already performing an action
         if (activeActions.containsKey(playerId)) {
-            throw new IllegalStateException("Player is already performing an action: " + activeActions.get(playerId));
+            throw new IllegalStateException("Player is already performing an action: " + activeActions.get(playerId).actionId);
         }
         
         // Start the action
-        activeActions.put(playerId, actionId);
+        activeActions.put(playerId, new ActionState(actionId, instanceId));
+    }
+    
+    /**
+     * Initiates a task/action for a player (backward compatibility).
+     * @param playerId The player ID
+     * @param actionId The action ID
+     */
+    @Transactional
+    public void startAction(String playerId, String actionId) {
+        startAction(playerId, actionId, null);
     }
     
     /**
@@ -63,8 +74,8 @@ public class ActionService {
     @Transactional
     public void processActionTick(String playerId, String actionId, double elapsedSeconds) {
         // Verify action is active
-        String activeActionId = activeActions.get(playerId);
-        if (activeActionId == null || !activeActionId.equals(actionId)) {
+        ActionState actionState = activeActions.get(playerId);
+        if (actionState == null || !actionState.actionId.equals(actionId)) {
             throw new IllegalStateException("Action is not active for player: " + playerId);
         }
         
@@ -98,9 +109,9 @@ public class ActionService {
     /**
      * Gets the currently active action for a player.
      * @param playerId The player ID
-     * @return The action ID, or null if no action is active
+     * @return The ActionState, or null if no action is active
      */
-    public String getActiveAction(String playerId) {
+    public ActionState getActiveAction(String playerId) {
         return activeActions.get(playerId);
     }
     

@@ -1,6 +1,9 @@
 package com.framework.data.staticdata;
 
+import com.framework.data.model.EquipmentDetails;
 import com.framework.data.model.Item;
+import com.framework.data.model.ItemType;
+import com.framework.data.model.EquipmentSlot;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,10 +26,10 @@ public class StaticItemData {
         }
         
         // TODO: Add actual item definitions here
-        // Example:
-        // items.put("copper_ore", new Item("copper_ore", "Copper Ore", 10, true, ItemType.RESOURCE));
-        // items.put("bronze_sword", new Item("bronze_sword", "Bronze Sword", 100, false, 
-        //     ItemType.EQUIPMENT, new EquipmentDetails(...)));
+        items.put("copper_ore", new Item("copper_ore", "Copper Ore", 10, true, ItemType.RESOURCE));
+
+        items.put("bronze_sword", new Item("bronze_sword", "Bronze Sword", 100, false, 
+            ItemType.EQUIPMENT, new EquipmentDetails(EquipmentSlot.WEAPON, 10, 10, 100, Map.of(1.0f, 1.0f))));
         
         initialized = true;
     }

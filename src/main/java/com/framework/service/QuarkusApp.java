@@ -2,6 +2,7 @@ package com.framework.service;
 
 import com.framework.data.staticdata.StaticActionData;
 import com.framework.data.staticdata.StaticItemData;
+import com.framework.data.staticdata.StaticLocationData;
 import com.framework.data.staticdata.StaticLootTableData;
 import com.framework.data.staticdata.StaticSkillData;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -25,6 +26,7 @@ public class QuarkusApp {
         StaticSkillData.initialize();
         StaticLootTableData.initialize();
         StaticActionData.initialize();
+        StaticLocationData.initialize();
         
         System.out.println("Game framework initialized successfully!");
     }

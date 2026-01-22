@@ -4,6 +4,8 @@ import com.framework.data.model.LootTable;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Static data factory for loot tables.
@@ -23,12 +25,11 @@ public class StaticLootTableData {
         }
         
         // TODO: Add actual loot table definitions here
-        // Example:
-        // List<LootTable.LootDrop> drops = List.of(
-        //     new LootTable.LootDrop("copper_ore", 0.5, 1, 3),
-        //     new LootTable.LootDrop("iron_ore", 0.2, 1, 2)
-        // );
-        // lootTables.put("common_mining_drops", new LootTable("common_mining_drops", drops));
+
+        ArrayList<LootTable.LootDrop> copper_mining_drops = new ArrayList<LootTable.LootDrop>(Arrays.asList(
+            new LootTable.LootDrop("copper_ore", 1, 1, 3)
+        ));
+        lootTables.put("copper_mining_drops", new LootTable("copper_mining_drops", copper_mining_drops));
         
         initialized = true;
     }
